@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How SurplusToServe Works</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #e6f7ff, #ffffff);
+      color: #333;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #2a5d84;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      animation: slideUp 1s ease-out;
+    }
+
+    .intro {
+      text-align: center;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .how-it-works {
+      text-align: center;
+    }
+
+    .step {
+      margin: 20px 0;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #444;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 20px;
+      animation: fadeIn 2s ease;
+    }
+
+    .cta button {
+      margin: 10px;
+      padding: 12px 25px;
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .cta button:hover {
+      background-color: #2a2a2a;
+      transform: scale(1.05);
+    }
+
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 15px;
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .home-button:hover {
+      background-color: #2a2a2a;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Home Button -->
+  <button class="home-button" onclick="location.href='index.html'">Home</button>
+
+  <!-- Introduction Section -->
+  <section class="section intro">
+    <h1>How SurplusToServe Works</h1>
+    <p><strong>“SurplusToServe connects food providers, donors, and volunteers with those in need, helping to reduce waste and meet essential needs. Join us in making a difference!”</strong></p>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section how-it-works">
+    <h2>Our Process</h2>
+    <div class="step"><strong>Step 1:</strong> Donors and food providers sign up and post available surplus items or donations.</div>
+    <div class="step"><strong>Step 2:</strong> SurplusToServe verifies the donations to ensure they meet safety guidelines and quality standards.</div>
+    <div class="step"><strong>Step 3:</strong> Volunteers are notified to pick up the items and deliver them to recipients.</div>
+    <div class="step"><strong>Step 4:</strong> Individuals or organizations in need receive donations, including meals, clothing, and essential supplies.</div>
+    <div class="step"><strong>Step 5:</strong> SurplusToServe tracks all contributions and ensures efficient distribution to reduce waste and support communities.</div>
+  </section>
+
+  <!-- Call-to-Action Section -->
+  <section class="section cta">
+    <h2>Join Us Today</h2>
+    <p>Be part of the solution! Get involved with SurplusToServe to help reduce waste and make a positive impact on lives.</p>
+    <button onclick="location.href='signup.html'">Sign Up as a Donor</button>
+    <button onclick="location.href='org_signup.html'">Request Items</button>
+    <button onclick="location.href='volunteer_signup.html'">Volunteer Opportunities</button>
+  </section>
+
+</body>
+</html>

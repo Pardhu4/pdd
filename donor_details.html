@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Details</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Heading Styles */
+        h1 {
+            font-size: 2rem;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #007bff;
+            margin: 20px 0 10px;
+        }
+
+        /* Form Styling */
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="number"] {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* No Data Message Styling */
+        .no-data {
+            font-size: 1rem;
+            color: #888;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: center;
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Donor Management</h1>
+        <form action="donor_details.php" method="get">
+            <label for="donor_id">Enter Donor ID:</label><br>
+            <input type="number" id="donor_id" name="donor_id" placeholder="Enter donor ID" required>
+            <br>
+            <button type="submit">Fetch Donor Details</button>
+        </form>
+        <p class="no-data">Enter a valid donor ID and click "Fetch Donor Details" to view data.</p>
+    </div>
+    <footer>
+        &copy; 2024 Donor Management. Designed with ❤️ by Your Organization.
+    </footer>
+</body>
+</html>

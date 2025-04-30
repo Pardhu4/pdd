@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(42, 42, 42, 0.9); /* Semi-transparent background */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the logo image and text */
+}
+
+.navbar .logo .logo-image {
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Optional: make the logo circular */
+}
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+      padding-right: 40px;
+    }
+
+    .navbar .nav-links button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar .nav-links button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .navbar .nav-links button:hover {
+      background-color: #555;
+      transform: scale(1.1);
+    }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff4d6d;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="email"], input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2a2a2a;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .form-footer a {
+            text-decoration: none;
+            color: #ff4d6d;
+            font-weight: bold;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="website_logo.png" alt="Logo" class="logo-image">
+            SurplusToServe
+            <button onclick="goBack()" style="background-color: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Go Back</button>
+
+        </div>
+        <div class="nav-links">
+          <button onclick="location.href='about_us.php'">
+            <img src="about_us_icon.png" alt="About Us Icon">
+          </button>
+          <button onclick="location.href='contact_us.html'">
+            <img src="contact_us_icon.png" alt="Contact Icon">
+          </button>
+          <button onclick="location.href='notifications.php'">
+            <img src="bell_icon.png" alt="Notifications Icon">
+          </button>
+        </div>
+      </div>
+    <div class="login-container">
+        <h2>Organization Login</h2>
+        <form action="org_login.php" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Login">
+        </form>
+        <div class="form-footer">
+            <p>Don’t have an account? <a href="org_signup.html">Signup here</a></p>
+        </div>
+    </div>
+</body>
+<script>
+    function goBack() {
+    if (document.referrer !== "") {
+        window.history.back();
+    } else {
+        window.location.href = "your-default-url.html"; // Replace with your fallback URL
+    }
+}
+</script>
+</html>

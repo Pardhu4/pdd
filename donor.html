@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('donor_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f5e9;
+            color: #333;
+        }
+        .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(42, 42, 42, 0.9); /* Semi-transparent background */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the logo image and text */
+}
+
+.navbar .logo .logo-image {
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Optional: make the logo circular */
+}
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+      padding-right: 40px;
+    }
+
+    .navbar .nav-links button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar .nav-links button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .navbar .nav-links button:hover {
+      background-color: #555;
+      transform: scale(1.1);
+    }
+
+        .container {
+            padding: 30px;
+            background-color: white;
+            
+            max-width: 650px;
+            margin: 40px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease;
+        }
+        h1 {
+            text-align: center;
+            color: #ff4d6d;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+            font-size: 1em;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #2e7d32;
+            outline: none;
+        }
+        button {
+            padding: 14px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2a2a2a;
+        }
+        #foodOptions, #clothesOptions {
+            background-color: #f1f8e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="website_logo.png" alt="Logo" class="logo-image">
+            SurplusToServe
+            <button onclick="goBack()" style="background-color: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Go Back</button>
+
+        </div>
+        <div class="nav-links">
+          <button onclick="location.href='about_us.php'">
+            <img src="about_us_icon.png" alt="About Us Icon">
+          </button>
+          <button onclick="location.href='contact_us.html'">
+            <img src="contact_us_icon.png" alt="Contact Icon">
+          </button>
+          <button onclick="location.href='notifications.php'">
+            <img src="bell_icon.png" alt="Notifications Icon">
+          </button>
+          <button onclick="location.href='donor_details.html'">
+            <img src="profile.png" alt="Profile Icon">
+          </button>
+          <button onclick="location.href='payment.html'">
+            <img src="payment-method.png" alt="Payments Icon">
+          </button>
+        </div>
+      </div>
+
+    <div class="container">
+        <h1>Make a Donation</h1>
+        <form id="donationForm" method="POST" action="donor.php">
+            <label for="donationType">Donation Type:</label>
+            <select id="donationType" name="donationType" onchange="showSubOptions()">
+                <option value="">Select Donation Type</option>
+                <option value="food">Food</option>
+                <option value="clothes">Clothes</option>
+                <option value="supplies">Supplies</option>
+            </select>
+
+            <div id="foodOptions" style="display:none;">
+                <label for="foodType">Food Type:</label>
+                <select id="foodType" name="foodType">
+                    <option value="cooked">Cooked Food</option>
+                    <option value="raw">Raw Materials</option>
+                </select>
+            </div>
+
+            <div id="clothesOptions" style="display:none;">
+                <label for="clothesType">Type of Clothes:</label>
+                <input type="text" id="clothesType" name="clothesType" placeholder="Type of Clothes">
+                <label for="clothesQuantity">Quantity:</label>
+                <input type="number" id="clothesQuantity" name="clothesQuantity" placeholder="Enter Quantity">
+            </div>
+
+            <label for="details">Additional Details:</label>
+            <textarea id="details" name="details" rows="4" placeholder="Enter any additional details"></textarea>
+
+            <label for="pickupLocation">Pickup Location:</label>
+            <input type="text" id="pickupLocation" name="pickupLocation" placeholder="Enter Pickup Location">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter Your Name">
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter Your Phone Number">
+
+            <label for="donorId">Donor ID:</label>
+            <input type="text" id="donorId" name="donorId" placeholder="Enter Your Donor ID">
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function showSubOptions() {
+            const donationType = document.getElementById('donationType').value;
+            document.getElementById('foodOptions').style.display = donationType === 'food' ? 'block' : 'none';
+            document.getElementById('clothesOptions').style.display = donationType === 'clothes' ? 'block' : 'none';
+          
+        }
+        function goBack() {
+    if (document.referrer !== "") {
+        window.history.back();
+    } else {
+        window.location.href = "your-default-url.html"; // Replace with your fallback URL
+    }
+}
+
+    </script>
+</body>
+</html>

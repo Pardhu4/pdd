@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            padding-top: 100px;
+        }
+
+        .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(42, 42, 42, 0.9); /* Semi-transparent background */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the logo image and text */
+}
+
+.navbar .logo .logo-image {
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Optional: make the logo circular */
+}
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+      padding-right: 40px;
+    }
+
+    .navbar .nav-links button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar .nav-links button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .navbar .nav-links button:hover {
+      background-color: #555;
+      transform: scale(1.1);
+    }
+
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff4d6d;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, textarea, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2a2a2a;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="website_logo.png" alt="Logo" class="logo-image">
+            SurplusToServe
+        </div>
+        <div class="nav-links">
+          <button onclick="location.href='about_us.php'">
+            <img src="about_us_icon.png" alt="About Us Icon">
+          </button>
+          <button onclick="location.href='contact_us.html'">
+            <img src="contact_us_icon.png" alt="Contact Icon">
+          </button>
+          <button onclick="location.href='notifications.php'">
+            <img src="bell_icon.png" alt="Notifications Icon">
+          </button>
+        </div>
+      </div>
+
+    <div class="container">
+        <h2>Organization Signup</h2>
+        <form id="org-signup-form" action="org_signup.php" method="POST" onsubmit="return handleFormSubmit(event)">
+            <input type="text" name="org_name" placeholder="Organization Name" required>
+            <input type="text" name="reg_number" placeholder="Registration Number" required>
+            <input type="text" name="contact_person" placeholder="Contact Person" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="tel" name="phone_number" placeholder="Phone Number (Optional)">
+            <textarea name="address" placeholder="Address (Optional)" rows="4"></textarea>
+            <button type="submit">Signup</button>
+            <p> Have an account? <a href="org_login.html">Login here</a></p>
+        </form>
+    </div>
+   
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+            const form = document.getElementById("org-signup-form");
+
+            // Send form data using Fetch API
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Signup successful! You will now be redirected.");
+                window.location.href = "request.html"; // Redirect to request page
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            });
+            return false; // Prevent default form submission
+        }
+    </script>
+</body>
+</html>

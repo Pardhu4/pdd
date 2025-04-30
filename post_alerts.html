@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Alert</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input,
+        form textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        form button {
+            padding: 10px 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const title = document.getElementById("title").value.trim();
+            const message = document.getElementById("message").value.trim();
+            if (title === "" || message === "") {
+                alert("All fields are required.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Post Alert</h1>
+        <form method="POST" action="post_alerts.php" onsubmit="return validateForm()">
+            <label for="title">Alert Title</label>
+            <input type="text" id="title" name="title" placeholder="Enter alert title" required>
+
+            <label for="message">Alert Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Enter alert message" required></textarea>
+
+            <button type="submit">Post Alert</button>
+        </form>
+    </div>
+</body>
+</html>

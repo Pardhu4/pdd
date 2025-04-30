@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SurplusToServe</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url('charity.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      padding-top: 70px; /* Adjust for navbar height */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(42, 42, 42, 0.9); /* Semi-transparent background */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the logo image and text */
+}
+
+.navbar .logo .logo-image {
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Optional: make the logo circular */
+}
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar .nav-links button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar .nav-links button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .navbar .nav-links button:hover {
+      background-color: #555;
+      transform: scale(1.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 50px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .hero-section h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .hero-section button {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: white;
+      background-color: #2a2a2a;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .hero-section button:hover {
+      background-color: #ff4d6d;
+      transform: scale(1.1);
+    }
+
+    .menu-btn {
+      display: block;
+      margin: 0 auto 30px;
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      width: 100px;
+      height: 100px;
+      font-size: 1.2em;
+      text-align: center;
+      line-height: 100px;
+      cursor: pointer;
+      clip-path: path('M50 15 Q25 -15 0 15 Q-25 45 50 100 Q125 45 100 15 Q75 -15 50 15 Z');
+      animation: bounce 2s infinite;
+      z-index: 2;
+    }
+
+    .hands-container {
+      position: absolute;
+      bottom: 225px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: riseFromBottom 2s ease forwards;
+      z-index: 1;
+    }
+
+    .hands-container img {
+      width: 200px;
+      height: auto;
+    }
+
+    .menu-options {
+      display: none;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .menu-options button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: white;
+      background-color: #2a2a2a;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideIn 0.5s ease forwards;
+    }
+
+    .menu-options button:hover {
+      background-color: #ff4d6d;
+      transform: scale(1.1);
+    }
+
+    .menu-options button:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .menu-options button:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .menu-options button:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .menu-options button:nth-child(4) {
+      animation-delay: 0.8s;
+      
+    }
+
+    footer {
+      background-color: #2a2a2a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-15px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes riseFromBottom {
+      from {
+        transform: translate(-50%, 200px);
+      }
+      to {
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+        <img src="website_logo.png" alt="Logo" class="logo-image">
+        SurplusToServe
+    </div>
+    <div class="nav-links">
+      <button onclick="location.href='about_us.php'">
+        <img src="about_us_icon.png" alt="About Us Icon">
+      </button>
+      <button onclick="location.href='contact_us.html'">
+        <img src="contact_us_icon.png" alt="Contact Icon">
+      </button>
+      <button onclick="location.href='notifications.php'">
+        <img src="bell_icon.png" alt="Notifications Icon">
+      </button>
+      <button onclick="location.href='admin_login.html'">
+        <img src="user-gear.png" alt="Admin Login Icon">
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero-section">
+      <h1>Reduce Waste, Serve Lives</h1>
+      <button onclick="location.href='howitworks.html'">How it works</button>
+    </div>
+
+    <div class="hands-container" id="handsContainer">
+      <img src="hand.png" alt="Hands">
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">❤menu</button>
+
+    <div class="menu-options" id="menuOptions">
+      <button onclick="location.href='login.html'">Donate</button>
+      <button onclick="location.href='volunteer_login.html'">Volunteer</button>
+      <button onclick="location.href='org_login.html'">Request</button>
+      <button onclick="location.href='partners_login.html'">Partners</button>
+    </div>
+  <script>
+    function toggleMenu() {
+      const menuOptions = document.getElementById('menuOptions');
+      const handsContainer = document.getElementById('handsContainer');
+      if (menuOptions.style.display === 'block') {
+        menuOptions.style.display = 'none';
+        handsContainer.style.display = 'block';
+      } else {
+        menuOptions.style.display = 'block';
+        handsContainer.style.display = 'none';
+      }
+    }
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2a2a2a;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2a2a2a;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Partner Signup</h1>
+    <form method="POST" action="partners_signup.php">
+        <label for="name">Store Name</label>
+        <input type="text" name="name" id="name" required>
+
+        <label for="category">Category</label>
+        <select name="category" id="category" required>
+            <option value="Hotel">Hotel</option>
+            <option value="Grocery">Grocery</option>
+        </select>
+
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" required>
+
+        <label for="contact">Contact</label>
+        <input type="text" name="contact" id="contact" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+    <div class="form-footer">
+        <p> Have an account? <a href="partners_login.html">Login here</a></p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SurplusToServe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #ff4d6d;; /* Green background */
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .quote {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+
+        .contact-form-container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            padding: 12px 20px;
+            background-color: #ff4d6d;;
+            text-align: center;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #2a2a2a;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .form-group img {
+            width: 25px;
+            height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Contact Us</h1>
+    </div>
+
+    <div class="quote">
+        <p>We're here to help! Whether you have questions about donations, want to volunteer, or are interested in
+            partnering with us, feel free to reach out.</p>
+    </div>
+
+    <div class="contact-form-container">
+        <form class="contact-form" action="contact_us.php" method="POST">
+            <!-- Existing form fields -->
+            <div class="form-group">
+                <img src="https://img.icons8.com/ios/452/user-male.png" alt="name icon" class="icon">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter name" required>
+            </div>
+        
+            <div class="form-group">
+                <img src="https://img.icons8.com/ios/452/phone.png" alt="phone icon" class="icon">
+                <label for="phone">Mobile Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your mobile number" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="message">Enter Message:</label>
+                <textarea id="message" name="message" placeholder="Enter your message here..." required></textarea>
+            </div>
+        
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

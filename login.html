@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(42, 42, 42, 0.9); /* Semi-transparent background */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the logo image and text */
+}
+
+.navbar .logo .logo-image {
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Optional: make the logo circular */
+}
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+      padding-right: 40px;
+    }
+
+    .navbar .nav-links button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar .nav-links button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .navbar .nav-links button:hover {
+      background-color: #555;
+      transform: scale(1.1);
+    }
+
+        .form-container {
+            width: 300px;
+            padding: 20px;
+            position: relative;
+            top: 175px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #ff4d6d;
+        }
+        .form-container input {
+            width: 85%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #2a2a2a;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <button onclick="goBack()" style="background-color: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Go Back</button>
+
+            <img src="website_logo.png" alt="Logo" class="logo-image">
+            SurplusToServe
+        </div>
+        <div class="nav-links">
+          <button onclick="location.href='about_us.php'">
+            <img src="about_us_icon.png" alt="About Us Icon">
+          </button>
+          <button onclick="location.href='contact_us.html'">
+            <img src="contact_us_icon.png" alt="Contact Icon">
+          </button>
+          <button onclick="location.href='notifications.php'">
+            <img src="bell_icon.png" alt="Notifications Icon">
+          </button>
+        </div>
+      </div>
+<div class="form-container">
+    <h2>Donor Login</h2>
+    <form id="loginForm">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+        <p>Don’t have an account? <a href="signup.html">Signup here</a></p>
+    </form>
+    <div class="error-message" id="errorMessage" style="display:none;"></div>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+        const formData = new FormData(this);
+
+        fetch('login.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data.trim() === 'Login successful') {
+                window.location.href = 'donor.html'; // Redirect on successful login
+            } else {
+                document.getElementById('errorMessage').innerText = data;
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    function goBack() {
+    if (document.referrer !== "") {
+        window.history.back();
+    } else {
+        window.location.href = "your-default-url.html"; // Replace with your fallback URL
+    }
+}
+
+</script>
+
+</body>
+</html>
