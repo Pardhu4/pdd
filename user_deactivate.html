@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <style>
+        /* Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .deactivate {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .deactivate:hover {
+            background-color: #e53935;
+        }
+
+        .activate {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .activate:hover {
+            background-color: #45a049;
+        }
+
+        .status-message {
+            margin-top: 15px;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Management</h1>
+        <div class="form-group">
+            <label for="userType">User Type</label>
+            <select id="userType">
+                <option value="donor">Donor</option>
+                <option value="volunteer">Volunteer</option>
+                <option value="organization">Organization</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="userId">User ID</label>
+            <input type="number" id="userId" placeholder="Enter User ID">
+        </div>
+        <div class="button-group">
+            <button class="deactivate" onclick="manageUser('deactivate')">Deactivate User</button>
+            <button class="activate" onclick="manageUser('activate')">Activate User</button>
+        </div>
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <script>
+        function manageUser(action) {
+            const userType = document.getElementById('userType').value;
+            const userId = document.getElementById('userId').value;
+            const statusMessage = document.getElementById('statusMessage');
+
+            if (!userId) {
+                statusMessage.classList.add('error');
+                statusMessage.textContent = 'Please enter a valid User ID.';
+                return;
+            }
+
+            // Send the action to the backend
+            fetch('user_management.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: action, userId: userId, userType: userType })
+            })
+            .then(response => response.json())
+            .then(data => {
+                statusMessage.textContent = data.message;
+                if (data.success) {
+                    statusMessage.classList.add('success');
+                    statusMessage.classList.remove('error');
+                } else {
+                    statusMessage.classList.add('error');
+                    statusMessage.classList.remove('success');
+                }
+            })
+            .catch(error => {
+                statusMessage.textContent = 'An error occurred. Please try again.';
+                statusMessage.classList.add('error');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(42, 42, 42, 0.9); /* Semi-transparent background */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the logo image and text */
+}
+
+.navbar .logo .logo-image {
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Optional: make the logo circular */
+}
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+      padding-right: 35px;
+    }
+
+    .navbar .nav-links button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar .nav-links button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .navbar .nav-links button:hover {
+      background-color: #555;
+      transform: scale(1.1);
+    }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            padding-top: 100px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2a2a2a;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .result p {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="website_logo.png" alt="Logo" class="logo-image">
+        </div>
+        <div class="nav-links">
+            <button onclick="location.href='about_us.php'">
+                <img src="about_us_icon.png" alt="About Us Icon">
+            </button>
+            <button onclick="location.href='view_alerts.php'">
+                <img src="alert.png" alt="Alert Icon">
+            </button>
+            <button onclick="location.href='notifications.php'">
+                <img src="bell_icon.png" alt="Notifications Icon">
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Track Your Request</h2>
+        <form id="track-form" action="track_request.php" method="POST" onsubmit="return handleTrackRequest(event)">
+            <input type="text" name="reference_number" placeholder="Enter Reference Number" required>
+            <input type="email" name="email" placeholder="Enter Your Email Address" required>
+            <button type="submit">Track Request</button>
+        </form>
+
+        <div class="result" id="result">
+            <p id="status-message"></p>
+        </div>
+    </div>
+
+    <script>
+        function handleTrackRequest(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const form = document.getElementById("track-form");
+            const resultDiv = document.getElementById("result");
+            const statusMessage = document.getElementById("status-message");
+
+            // Send form data using Fetch API
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        statusMessage.textContent = `Request Status: ${data.status}`;
+                        resultDiv.style.display = "block";
+                        resultDiv.classList.remove("error");
+                    } else {
+                        statusMessage.textContent = "Error: Invalid reference number or email.";
+                        resultDiv.style.display = "block";
+                        resultDiv.classList.add("error");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    statusMessage.textContent = "An error occurred. Please try again.";
+                    resultDiv.style.display = "block";
+                    resultDiv.classList.add("error");
+                });
+
+            return false; // Prevent default form submission
+        }
+    </script>
+</body>
+</html>
